@@ -17,8 +17,17 @@
             width: 100%;
             height: 100%;
             font-family: 'Fira Code', monospace;
-            background: #000 url('https://imgur.com/GukQioj.png') no-repeat center center/100% 100%;
+            /* Fundo gradient preto animado (substituindo a imagem anterior) */
+            background: linear-gradient(270deg, #0a0a0a, #1a1a1a, #0a0a0a, #111111);
+            background-size: 400% 400%;
+            animation: gradientShift 18s ease infinite;
             overflow: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .sidebar-container {
@@ -61,6 +70,41 @@
             line-height: 1.5; 
             text-shadow: 1px 1px 2px #000;
             margin-bottom: 20px;
+        }
+
+        /* Nova seção do endereço Bitcoin */
+        .btc-address-container {
+            margin-bottom: 22px;
+        }
+
+        .btc-label {
+            font-size: 10px;
+            color: #ffd700;
+            font-family: 'Fira Code', monospace;
+            margin-bottom: 6px;
+            letter-spacing: 1px;
+        }
+
+        .btc-address {
+            display: block;
+            font-size: 10px;
+            font-family: 'Fira Code', monospace;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.45);
+            border: 1px dashed rgba(255, 215, 0, 0.4);
+            padding: 10px 12px;
+            border-radius: 6px;
+            word-break: break-all;
+            line-height: 1.3;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-shadow: 0 0 6px rgba(255, 215, 0, 0.3);
+        }
+
+        .btc-address:hover {
+            background: rgba(255, 215, 0, 0.1);
+            border-color: #ffd700;
+            transform: translateY(-1px);
         }
 
         /* Lista de Links */
@@ -114,6 +158,14 @@
                 ʙᴜʏ ʙɪᴛᴄᴏɪɴ ₿
             </div>
 
+            <!-- Endereço Bitcoin (logo abaixo do "buy bitcoin") -->
+            <div class="btc-address-container">
+                <div class="btc-label">BITCOIN ADDRESS</div>
+                <span id="btc-address" class="btc-address">
+                    bc1qxy0uvk6n9fu7nv9a93ljax8q77vl649pmsh8ws
+                </span>
+            </div>
+
             <div class="links-list">
                 <a href="https://www.youtube.com/channel/UCfYSU1O3I72mrDHCRNUPtNQ" target="_blank" class="link-item">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" class="link-icon">
@@ -132,6 +184,22 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // Copia silenciosa (sem notificação, sem alert, sem toast)
+        document.addEventListener('DOMContentLoaded', () => {
+            const addressEl = document.getElementById('btc-address');
+            
+            if (addressEl) {
+                addressEl.addEventListener('click', () => {
+                    const address = addressEl.textContent.trim();
+                    navigator.clipboard.writeText(address).catch(() => {
+                        // Falha silenciosa (nada aparece pro usuário)
+                    });
+                });
+            }
+        });
+    </script>
 
 </body>
 </html>
