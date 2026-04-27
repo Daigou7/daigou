@@ -6,269 +6,61 @@
     <link rel="icon" type="image/png" href="https://imgur.com/LFnzu3x.png">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Fira+Code:wght@300;500&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --pink-light: #ffb7c5;
-        }
+        :root{--pink:#ffb7c5}
+        *{margin:0;padding:0;box-sizing:border-box}
+        body,html{width:100%;height:100%;font-family:'Fira Code',monospace;background:linear-gradient(135deg,#0a0a0a,#1a1a1a,#0a0a0a),repeating-linear-gradient(45deg,transparent,transparent 50px,rgba(0,255,80,.025)50px,rgba(0,255,80,.025)52px);background-size:400% 400%,120px 120px;animation:grad 35s linear infinite;overflow:hidden}
+        @keyframes grad{0%{background-position:0% 50%,0 0}50%{background-position:100% 50%,120px 120px}100%{background-position:0% 50%,0 0}}
+        body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(to bottom,transparent 0,transparent 3px,rgba(0,255,100,.015)3px,rgba(0,255,100,.015)4px);animation:scan 8s linear infinite;pointer-events:none;z-index:-1}
+        @keyframes scan{0%{transform:translateY(-100%)}100%{transform:translateY(100%)}}
         
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        .container{position:fixed;left:50%;top:30px;transform:translateX(-50%);width:fit-content;z-index:1000}
+        .card{background:rgba(8,8,8,.48);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.07);padding:28px 24px;text-align:center;border-radius:16px;box-shadow:0 20px 50px rgba(0,0,0,.9);width:fit-content;min-width:320px;max-width:360px;position:relative;overflow:hidden}
+        .card::before{content:'';position:absolute;inset:-2px;border-radius:18px;background:linear-gradient(90deg,transparent,rgba(0,255,100,.15),transparent);animation:border 4s linear infinite;z-index:-1}
+        @keyframes border{0%{transform:translateX(-100%)}100%{transform:translateX(300%)}}
         
-        body, html {
-            width: 100%;
-            height: 100%;
-            font-family: 'Fira Code', monospace;
-            background: linear-gradient(270deg, #0a0a0a, #1a1a1a, #0a0a0a, #111111);
-            background-size: 400% 400%;
-            animation: gradientShift 18s ease infinite;
-            overflow: hidden;
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .sidebar-container {
-            position: fixed;
-            left: 50%;
-            top: 30px;
-            transform: translateX(-50%);
-            width: 580px;
-            z-index: 1000;
-            animation: fadeIn 0.8s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translate(-50%, -20px); }
-            to { opacity: 1; transform: translate(-50%, 0); }
-        }
-
-        .side-card {
-            background: #000000;
-            border: 1px solid #222222;
-            padding: 28px;
-            text-align: center;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
-            color: #eeeeee;
-        }
-
-        .bio { 
-            font-family: 'Quicksand', sans-serif; 
-            font-size: 13px; 
-            color: #eeeeee;
-            line-height: 1.5; 
-            text-shadow: 1px 1px 2px #000;
-            margin-bottom: 22px;
-        }
-
-        .content-row {
-            display: flex;
-            gap: 28px;
-            align-items: flex-start;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .left-column {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 18px;
-            flex: 0 0 auto;
-        }
-
-        .right-column {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            flex: 1;
-        }
-
-        .avatar { 
-            width: 220px; 
-            height: 220px; 
-            border: 2px solid var(--pink-light); 
-            border-radius: 12px;
-            object-fit: cover; 
-            cursor: pointer;
-            transition: transform 0.2s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-        }
-
-        .avatar:hover {
-            transform: scale(1.04);
-        }
-
-        .btc-address-container {
-            width: 100%;
-            max-width: 220px;
-        }
-
-        .btc-label {
-            font-size: 10px;
-            color: #ffd700;
-            font-family: 'Fira Code', monospace;
-            margin-bottom: 6px;
-            letter-spacing: 1px;
-        }
-
-        .btc-address {
-            display: block;
-            font-size: 10px;
-            font-family: 'Fira Code', monospace;
-            color: #eeeeee;
-            background: rgba(20, 20, 20, 0.85);
-            border: 1px dashed rgba(255, 215, 0, 0.4);
-            padding: 12px 14px;
-            border-radius: 6px;
-            word-break: break-all;
-            line-height: 1.3;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            text-shadow: 0 0 6px rgba(255, 215, 0, 0.3);
-        }
-
-        .btc-address:hover {
-            background: rgba(255, 215, 0, 0.12);
-            border-color: #ffd700;
-            transform: translateY(-1px);
-        }
-
-        .links-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            text-align: left;
-        }
-
-        .link-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: #eeeeee;
-            text-decoration: none;
-            font-size: 12px;
-            padding: 11px;
-            border-radius: 6px;
-            background: rgba(20, 20, 20, 0.85);
-            border: 1px solid rgba(255, 183, 197, 0.2);
-            transition: 0.3s;
-        }
-
-        .link-item:hover {
-            background: rgba(255, 183, 197, 0.15);
-            border-color: var(--pink-light);
-            transform: translateX(8px);
-        }
-
-        .link-icon {
-            width: 18px;
-            height: 18px;
-            object-fit: contain;
-        }
-
-        .link-label {
-            color: var(--pink-light);
-            font-weight: bold;
-        }
+        .name{font-family:Arial Black,sans-serif;font-size:34px;font-weight:900;letter-spacing:3px;color:var(--pink);margin-bottom:8px;text-shadow:0 0 12px rgba(255,183,197,.6)}
+        .bio{font-family:'Quicksand',sans-serif;font-size:13px;line-height:1.6;color:#eee;margin-bottom:24px}
+        
+        .btc{margin:0 auto 22px;width:fit-content}
+        .btcaddr{font-size:9.5px;background:rgba(15,15,15,.75);border:1px dashed rgba(255,215,0,.4);padding:11px 14px;border-radius:8px;color:#eee;cursor:pointer;transition:.3s;word-break:break-all;max-width:280px}
+        .btcaddr:hover{background:rgba(255,215,0,.15);border-color:#ffd700;transform:translateY(-2px);box-shadow:0 0 15px rgba(255,215,0,.3)}
+        
+        .links{max-width:300px;margin:0 auto;display:flex;flex-direction:column;gap:9px}
+        .link{display:flex;align-items:center;gap:12px;padding:11px 12px;background:rgba(15,15,15,.65);border:1px solid rgba(255,183,197,.12);border-radius:8px;color:#eee;text-decoration:none;font-size:12px;transition:.35s}
+        .link:hover{background:rgba(255,183,197,.12);border-color:var(--pink);transform:translateX(8px)}
+        .link img{width:18px;height:18px;transition:.3s}
+        .link:hover img{transform:scale(1.15)}
     </style>
 </head>
 <body>
-
-    <div class="sidebar-container">
-        <div class="side-card">
+    <div class="container">
+        <div class="card">
+            <div class="name">DAIGOU</div>
+            <div class="bio">Jᴇsᴜs Cʜʀɪsᴛ is Lord ♱<br>ʙᴜʏ ʙɪᴛᴄᴏɪɴ ₿</div>
             
-            <div class="bio">
-                Jᴇsᴜs Cʜʀɪsᴛ is Lord ♱<br>
-                ʙᴜʏ ʙɪᴛᴄᴏɪɴ ₿
+            <div class="btc">
+                <span id="btc" class="btcaddr">bc1qxy0uvk6n9fu7nv9a93ljax8q77vl649pmsh8ws</span>
             </div>
-
-            <div class="content-row">
-                
-                <div class="left-column">
-                    <img id="avatar" src="https://i.imgur.com/xnLxJhg.png" class="avatar" alt="Garota Japonesa">
-                    
-                    <div class="btc-address-container">
-                        <span class="btc-label"></span>
-                        <span id="btc-address" class="btc-address">
-                            bc1qxy0uvk6n9fu7nv9a93ljax8q77vl649pmsh8ws
-                        </span>
-                    </div>
-                </div>
-
-                <div class="right-column">
-                    <div class="links-list">
-                        <a href="https://www.youtube.com/channel/UCfYSU1O3I72mrDHCRNUPtNQ" target="_blank" class="link-item">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" class="link-icon">
-                            <span class="link-label">YouTube</span>
-                        </a>
-
-                        <a href="https://steamcommunity.com/id/Daigou7/" target="_blank" class="link-item">
-                            <img src="https://imgur.com/N92w6JN.png" class="link-icon">
-                            <span class="link-label">Steam</span>
-                        </a>
-
-                        <a href="https://myanimelist.net/profile/Daigou" target="_blank" class="link-item">
-                            <img src="https://imgur.com/jWbk2Ey.png" class="link-icon">
-                            <span class="link-label">MyAnimeList</span>
-                        </a>
-                    </div>
-                </div>
+            
+            <div class="links">
+                <a href="https://www.youtube.com/channel/UCfYSU1O3I72mrDHCRNUPtNQ" target="_blank" class="link">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg"> 
+                    <span>YouTube</span>
+                </a>
+                <a href="https://steamcommunity.com/id/Daigou7/" target="_blank" class="link">
+                    <img src="https://imgur.com/N92w6JN.png"> 
+                    <span>Steam</span>
+                </a>
+                <a href="https://myanimelist.net/profile/Daigou" target="_blank" class="link">
+                    <img src="https://imgur.com/jWbk2Ey.png"> 
+                    <span>MyAnimeList</span>
+                </a>
             </div>
-
         </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const avatarImages = [
-                "https://imgur.com/EZdYqeE.png",
-                "https://i.imgur.com/L6GL4aM.png",
-                "https://i.imgur.com/psoO6HC.png",
-                "https://i.imgur.com/ldo1rGc.png",
-                "https://i.imgur.com/azi7sff.png",
-                "https://i.imgur.com/HN1Yd98.png",
-                "https://i.imgur.com/q0tzOye.png",
-                "https://i.imgur.com/PspVvU5.png",
-                "https://i.imgur.com/SvY1Rqx.png",
-                "https://i.imgur.com/toiWLdW.png",
-                "https://i.imgur.com/aSzjVFE.png",
-                "https://i.imgur.com/cvtZZul.png",
-                "https://i.imgur.com/YcZ7ImN.png",
-                "https://i.imgur.com/X4HjbpF.png",
-                "https://i.imgur.com/bDi3PLQ.png",
-                "https://i.imgur.com/cYYVzu4.png",
-                "https://i.imgur.com/U4zZ7yK.png",
-                "https://i.imgur.com/Qz2lnbL.png"
-            ];
-
-            const avatarEl = document.getElementById('avatar');
-            let currentIndex = 0;
-
-            avatarEl.addEventListener('mouseenter', () => {
-                let newIndex;
-                do {
-                    newIndex = Math.floor(Math.random() * avatarImages.length);
-                } while (newIndex === currentIndex);
-                avatarEl.src = avatarImages[newIndex];
-                currentIndex = newIndex;
-            });
-
-            avatarEl.addEventListener('mouseleave', () => {
-                avatarEl.src = avatarImages[0];
-                currentIndex = 0;
-            });
-
-            const addressEl = document.getElementById('btc-address');
-            if (addressEl) {
-                addressEl.addEventListener('click', () => {
-                    const address = addressEl.textContent.trim();
-                    navigator.clipboard.writeText(address).catch(() => {});
-                });
-            }
-        });
+        document.getElementById('btc').addEventListener('click',()=>{navigator.clipboard.writeText(this.textContent.trim())});
     </script>
-
 </body>
 </html>
