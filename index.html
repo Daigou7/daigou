@@ -127,17 +127,22 @@ body::before{
 /* RIGHT */
 .fastfetch-window{
     position:absolute;
-    max-height: 80vh;
-    overflow: hidden;
     right:6%;
     top:50%;
     transform:translateY(-50%);
-    width:420px;
+
+    width:600px;
+    max-width:45vw;
+
     padding:18px;
+
     background:var(--panel);
     border:1px solid var(--border);
     border-radius:14px;
+
     box-shadow:0 0 40px rgba(0,0,0,.8);
+
+    overflow:visible;
 }
 
 .fastfetch{
