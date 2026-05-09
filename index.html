@@ -1,58 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Daigou</title>
-    <link rel="icon" type="image/png" href="https://imgur.com/LFnzu3x.png">
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Fira+Code:wght@300;500&display=swap" rel="stylesheet">
-    <style>
-        :root{--pink:#ffb7c5}
-        *{margin:0;padding:0;box-sizing:border-box}
-        body,html{width:100%;height:100%;font-family:'Fira Code',monospace;background:linear-gradient(135deg,#0a0a0a,#1a1a1a,#0a0a0a),repeating-linear-gradient(45deg,transparent,transparent 50px,rgba(0,255,80,.025)50px,rgba(0,255,80,.025)52px);background-size:400% 400%,120px 120px;animation:grad 35s linear infinite;overflow:hidden}
-        @keyframes grad{0%{background-position:0% 50%,0 0}50%{background-position:100% 50%,120px 120px}100%{background-position:0% 50%,0 0}}
-        body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(to bottom,transparent 0,transparent 3px,rgba(0,255,100,.015)3px,rgba(0,255,100,.015)4px);animation:scan 8s linear infinite;pointer-events:none;z-index:-1}
-        @keyframes scan{0%{transform:translateY(-100%)}100%{transform:translateY(100%)}}
-        
-        .container{position:fixed;left:50%;top:30px;transform:translateX(-50%);width:fit-content;z-index:1000}
-        .card{background:rgba(8,8,8,.48);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.07);padding:28px 24px;text-align:center;border-radius:16px;box-shadow:0 20px 50px rgba(0,0,0,.9);width:fit-content;min-width:320px;max-width:360px;position:relative;overflow:hidden}
-        .card::before{content:'';position:absolute;inset:-2px;border-radius:18px;background:linear-gradient(90deg,transparent,rgba(0,255,100,.15),transparent);animation:border 4s linear infinite;z-index:-1}
-        @keyframes border{0%{transform:translateX(-100%)}100%{transform:translateX(300%)}}
-        
-        .name{font-family:Arial Black,sans-serif;font-size:34px;font-weight:900;letter-spacing:3px;color:var(--pink);margin-bottom:8px;text-shadow:0 0 12px rgba(255,183,197,.6)}
-        .bio{font-family:'Quicksand',sans-serif;font-size:13px;line-height:1.6;color:#eee;margin-bottom:24px}
-        
-        .btc{margin:0 auto 22px;width:fit-content}
-        .btcaddr{font-size:9.5px;background:rgba(15,15,15,.75);border:1px dashed rgba(255,215,0,.4);padding:11px 14px;border-radius:8px;color:#eee;cursor:pointer;transition:.3s;word-break:break-all;max-width:280px}
-        .btcaddr:hover{background:rgba(255,215,0,.15);border-color:#ffd700;transform:translateY(-2px);box-shadow:0 0 15px rgba(255,215,0,.3)}
-        
-        .links{max-width:300px;margin:0 auto;display:flex;flex-direction:column;gap:9px}
-        .link{display:flex;align-items:center;gap:12px;padding:11px 12px;background:rgba(15,15,15,.65);border:1px solid rgba(255,183,197,.12);border-radius:8px;color:#eee;text-decoration:none;font-size:12px;transition:.35s}
-        .link:hover{background:rgba(255,183,197,.12);border-color:var(--pink);transform:translateX(8px)}
-        .link img{width:18px;height:18px;transition:.3s}
-        .link:hover img{transform:scale(1.15)}
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="card">
-            <div class="name">DAIGOU</div>
-            <div class="bio">Jᴇsᴜs Cʜʀɪsᴛ is Lord ♱<br>ʙᴜʏ ʙɪᴛᴄᴏɪɴ ₿</div>
-            
-            <div class="btc">
-                <span id="btc" class="btcaddr">bc1qxy0uvk6n9fu7nv9a93ljax8q77vl649pmsh8ws</span>
-            </div>
-            
-            <div class="links">
-                <a href="https://steamcommunity.com/id/Daigou7/" target="_blank" class="link">
-                    <img src="https://imgur.com/N92w6JN.png"> 
-                    <span>Steam</span>
-                </a>
-            </div>
-        </div>
-    </div>
+<meta charset="UTF-8">
+<title>Daigou</title>
 
-    <script>
-        document.getElementById('btc').addEventListener('click',()=>{navigator.clipboard.writeText(this.textContent.trim())});
-    </script>
+<link rel="icon" type="image/png" href="https://imgur.com/LFnzu3x.png">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Fira+Code:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --bg:#050505;
+    --panel:rgba(10,10,10,.72);
+    --border:rgba(255,255,255,.06);
+    --text:#d6d6d6;
+    --muted:#9a9a9a;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body,html{
+    height:100%;
+    overflow:hidden;
+    font-family:'Fira Code',monospace;
+    color:var(--text);
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.03), transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(255,255,255,.02), transparent 40%),
+        linear-gradient(135deg,#000,#0a0a0a);
+}
+
+body::before{
+    content:'';
+    position:fixed;
+    inset:0;
+    background:repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent 3px,
+        rgba(255,255,255,.015) 4px
+    );
+    pointer-events:none;
+}
+
+/* LEFT */
+.container{
+    position:absolute;
+    left:6%;
+    top:50%;
+    transform:translateY(-50%);
+}
+
+.card{
+    background:var(--panel);
+    border:1px solid var(--border);
+    padding:28px 24px;
+    border-radius:14px;
+    width:340px;
+    text-align:center;
+    box-shadow:0 0 35px rgba(0,0,0,.8);
+}
+
+.toptext{
+    font-size:10px;
+    color:var(--muted);
+    margin-bottom:10px;
+    letter-spacing:2px;
+}
+
+.avatar{
+    width:110px;
+    height:110px;
+    border-radius:12px;
+    object-fit:cover;
+    border:1px solid rgba(255,255,255,.08);
+    margin-bottom:10px;
+}
+
+.name{
+    font-size:32px;
+    letter-spacing:3px;
+    color:var(--text);
+    font-weight:700;
+}
+
+.bio{
+    font-size:12px;
+    margin:10px 0 14px;
+    color:var(--muted);
+    line-height:1.4;
+}
+
+.btc{
+    font-size:10px;
+    padding:10px;
+    border:1px dashed rgba(255,255,255,.12);
+    border-radius:8px;
+    cursor:pointer;
+    word-break:break-all;
+    margin-bottom:14px;
+    color:var(--text);
+}
+
+.link{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px;
+    background:rgba(0,0,0,.4);
+    border-radius:8px;
+    border:1px solid rgba(255,255,255,.06);
+    text-decoration:none;
+    color:var(--text);
+    font-size:12px;
+    transition:.2s;
+}
+
+.link:hover{
+    transform:translateX(6px);
+    border-color:rgba(255,255,255,.2);
+}
+
+/* RIGHT */
+.fastfetch-window{
+    position:absolute;
+    right:6%;
+    top:50%;
+    transform:translateY(-50%);
+    width:420px;
+    padding:18px;
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:14px;
+    box-shadow:0 0 40px rgba(0,0,0,.8);
+}
+
+.fastfetch{
+    white-space:pre;
+    font-size:11px;
+    line-height:1.4;
+    color:var(--text);
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="card">
+
+        <div class="toptext">PROFILE IMAGE</div>
+        <img id="avatar" class="avatar" src="COLE_AQUI_SUA_IMAGEM">
+
+        <div class="name">DAIGOU</div>
+
+        <div class="bio">
+            Jᴇsᴜs Cʜʀɪsᴛ is Lord ♱<br>
+            Arch Linux / KDE Plasma
+        </div>
+
+        <div id="btc" class="btc">
+            bc1qxy0uvk6n9fu7nv9a93ljax8q77vl649pmsh8ws
+        </div>
+
+        <a class="link" href="https://steamcommunity.com/id/Daigou7/" target="_blank">
+            <img src="https://imgur.com/N92w6JN.png" width="18">
+            Steam
+        </a>
+
+    </div>
+</div>
+
+<div class="fastfetch-window">
+<div class="fastfetch">
+-`                     daigou@daigou
+.o+`                    -------------
+ooo/                    OS: Arch Linux x86_64
++oooo:                  Kernel: Linux 7.0.3-arch1-2
++oooooo:                Uptime: 38 mins
+-+oooooo+:              Packages: 1254 (pacman)
+/:-:++oooo+:            Shell: bash 5.3.9
+/++++/+++++++:          DE: KDE Plasma 6.6.4
+/++++++++++++++:        WM: KWin (Wayland)
+/+++ooooooooooooo/`     CPU: Intel i5-3470
+./ooosssso++osssssso+`  GPU: AMD RX 550
+.oossssso-````/ossssss+ Memory: 15.56 GiB
+</div>
+</div>
+
+<script>
+document.getElementById("avatar").src = "COLE_AQUI_SUA_IMAGEM";
+
+document.getElementById("btc").addEventListener("click", function(){
+    navigator.clipboard.writeText(this.textContent.trim());
+});
+</script>
+
 </body>
 </html>
