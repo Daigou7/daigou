@@ -1,211 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Daigou</title>
+    <meta charset="UTF-8">
+    <title>Daigou</title>
+    <link rel="icon" type="image/png" href="https://imgur.com/7H8pFGh.png">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Fira+Code:wght@300;500&display=swap" rel="stylesheet">
+    <style>
+        :root{
+            --bg:#050505;
+            --border:rgba(255,255,255,.06);
+            --text:#d6d6d6;
+            --muted:#9a9a9a;
+        }
+        *{ margin:0; padding:0; box-sizing:border-box; }
+        body,html{ height:100%; overflow:hidden; font-family:'Fira Code',monospace; color:var(--text); background: radial-gradient(circle at 20% 20%, rgba(255,255,255,.03), transparent 40%), radial-gradient(circle at 80% 80%, rgba(255,255,255,.02), transparent 40%), linear-gradient(135deg,#000,#000); }
+        body::before{ content:''; position:fixed; inset:0; background:repeating-linear-gradient( to bottom, transparent, transparent 3px, rgba(255,255,255,.015) 4px ); pointer-events:none; }
 
-<link rel="icon" type="image/png" href="https://imgur.com/7H8pFGh.png">
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Fira+Code:wght@300;500&display=swap" rel="stylesheet">
+        .container{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); }
+        .card{ background:transparent; border:none; padding:28px 24px; border-radius:14px; width:340px; text-align:center; box-shadow:none; }
 
-<style>
-:root{
-    --bg:#050505;
-    --border:rgba(255,255,255,.06);
-    --text:#d6d6d6;
-    --muted:#9a9a9a;
-}
+        /* BANNER */
+        .banner {
+            position: relative;
+            width: 100%;
+            height: 140px;
+            background: url('https://imgur.com/hj11RAb.png') center/cover no-repeat;
+            border-radius: 14px 14px 0 0;
+            margin-bottom: -55px;
+        }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+        .avatar {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 4px solid var(--bg);
+            position: absolute;
+            bottom: -55px;
+            left: 50%;
+            transform: translateX(-50%);
+            object-fit: cover;
+        }
 
-body,html{
-    height:100%;
-    overflow:hidden;
-    font-family:'Fira Code',monospace;
-    color:var(--text);
-    background:
-        radial-gradient(circle at 20% 20%, rgba(255,255,255,.03), transparent 40%),
-        radial-gradient(circle at 80% 80%, rgba(255,255,255,.02), transparent 40%),
-        linear-gradient(135deg,#000,#000);
-}
-
-body::before{
-    content:'';
-    position:fixed;
-    inset:0;
-    background:repeating-linear-gradient(
-        to bottom,
-        transparent,
-        transparent 3px,
-        rgba(255,255,255,.015) 4px
-    );
-    pointer-events:none;
-}
-
-/* CENTER CARD */
-.container{
-    position:absolute;
-    left:50%;
-    top:50%;
-    transform:translate(-50%,-50%);
-}
-
-.card{
-    background:transparent;
-    border:none;
-    padding:28px 24px;
-    border-radius:14px;
-    width:340px;
-    text-align:center;
-    box-shadow:none;
-}
-
-/* ORIGINAL FASTFETCH WINDOW */
-.fastfetch-window{
-    position:absolute;
-    right:6%;
-    top:50%;
-    transform:translateY(-50%);
-    width:600px;
-    max-width:45vw;
-    background:transparent;
-    border:none;
-    box-shadow:none;
-}
-
-.fastfetch{
-    white-space:pre;
-    font-size:11px;
-    line-height:1.4;
-    color:var(--text);
-}
-
-.toptext{
-    font-size:10px;
-    color:var(--muted);
-    margin-bottom:10px;
-    letter-spacing:2px;
-}
-
-.avatar{
-    width:110px;
-    height:110px;
-    border-radius:12px;
-    object-fit:cover;
-    border:1px solid rgba(255,255,255,.08);
-    margin-bottom:10px;
-}
-
-.name{
-    font-size:32px;
-    letter-spacing:3px;
-    color:var(--text);
-    font-weight:700;
-}
-
-.bio{
-    font-size:12px;
-    margin:10px 0 14px;
-    color:var(--muted);
-    line-height:1.4;
-}
-
-.btc{
-    font-size:10px;
-    padding:10px;
-    border:1px dashed rgba(255,255,255,.12);
-    border-radius:8px;
-    cursor:pointer;
-    word-break:break-all;
-    margin-bottom:14px;
-    color:var(--text);
-}
-
-.link{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    padding:10px;
-    background:rgba(0,0,0,.4);
-    border-radius:8px;
-    border:1px solid rgba(255,255,255,.06);
-    text-decoration:none;
-    color:var(--text);
-    font-size:12px;
-    transition:.2s;
-}
-
-.link:hover{
-    transform:translateX(6px);
-    border-color:rgba(255,255,255,.2);
-}
-</style>
+        .fastfetch-window{ position:absolute; right:6%; top:50%; transform:translateY(-50%); width:600px; max-width:45vw; background:transparent; border:none; box-shadow:none; }
+        .fastfetch{ white-space:pre; font-size:11px; line-height:1.4; color:var(--text); }
+        .toptext{ font-size:10px; color:var(--muted); margin-bottom:10px; letter-spacing:2px; }
+        .name{ font-size:32px; letter-spacing:3px; color:var(--text); font-weight:700; margin-top: 60px; }
+        .bio{ font-size:12px; margin:10px 0 14px; color:var(--muted); line-height:1.4; }
+        .btc{ font-size:10px; padding:10px; border:1px dashed rgba(255,255,255,.12); border-radius:8px; cursor:pointer; word-break:break-all; margin-bottom:14px; color:var(--text); }
+        .link{ display:flex; align-items:center; gap:10px; padding:10px; background:rgba(0,0,0,.4); border-radius:8px; border:1px solid rgba(255,255,255,.06); text-decoration:none; color:var(--text); font-size:12px; transition:.2s; }
+        .link:hover{ transform:translateX(6px); border-color:rgba(255,255,255,.2); }
+    </style>
 </head>
-
 <body>
-
-<div class="container">
-    <div class="card">
-
-        <div class="toptext"></div>
-        <img id="avatar" class="avatar" src="">
-
-        <div class="name">DAIGOU</div>
-
-        <div class="bio">
-            Jᴇsᴜs Cʜʀɪsᴛ is Lord ♱<br>
-            Buy Bitcoin ₿
+    <div class="container">
+        <div class="card">
+            <div class="banner"></div>
+            <img id="avatar" class="avatar" src="">
+            <div class="name">DAIGOU</div>
+            <div class="bio"> Jᴇsᴜs Cʜʀɪsᴛ is Lord ♱<br> Buy Bitcoin ₿ </div>
+            <div id="btc" class="btc"> bc1qxy0uvk6n9fu7nv9a93ljax8q77vl649pmsh8ws </div>
+            <a class="link" href="https://steamcommunity.com/id/Daigou7/" target="_blank">
+                <img src="https://imgur.com/N92w6JN.png" width="18"> Steam
+            </a>
         </div>
-
-        <div id="btc" class="btc">
-            bc1qxy0uvk6n9fu7nv9a93ljax8q77vl649pmsh8ws
-        </div>
-
-        <a class="link" href="https://steamcommunity.com/id/Daigou7/" target="_blank">
-            <img src="https://imgur.com/N92w6JN.png" width="18">
-            Steam
-        </a>
-
     </div>
-</div>
 
-<div class="fastfetch-window">
-<div class="fastfetch">
-                  -`                     daigou@daigou
-                 .o+`                    -------------
-                `ooo/                    OS: Arch Linux x86_64
-               `+oooo:                   Kernel: Linux 7.0.3-arch1-2
-              `+oooooo:                  
-              -+oooooo+:                 Packages: 16 (flatpak), 1254 (pacman)
-            `/:-:++oooo+:                Shell: bash 5.3.9
-           `/++++/+++++++:               Display (SAMSUNG): 2560x1440 @ 0.9x in 7", 144 Hz [External]
-          `/++++++++++++++:              DE: KDE Plasma 6.6.4
-         `/+++ooooooooooooo/`            WM: KWin (Wayland)
-        ./ooosssso++osssssso+`           WM Theme: Utterly-Round-Dark
-       .oossssso-````/ossssss+`          Theme: Breeze (Dark) [Qt], Breeze-Dark [GTK2], Breeze [GTK3]
-      -osssssso.      :ssssssso.         Icons: breeze-dark [Qt], breeze-dark [GTK2/3/4]
-     :osssssss/        osssso+++.        Font: Noto Sans (10pt) [Qt], Noto Sans (10pt) [GTK2/3/4]
-    /ossssssss/        +ssssooo/-        Cursor: Flandre (24px)
-  `/ossssso+/:-        -:/+osssso+-      Terminal: konsole 26.4.1
- `+sso+:-`                 `.-/+oso:     CPU: Intel(R) Core(TM) i5-3470 (4) @ 3.60 GHz
-`++:.                           `-/+/    GPU: AMD Radeon RX 550 / 550 Series [Discrete]
-.`                                 `/    Memory: 5.51 GiB / 15.56 GiB (35%)
-                                         Disk (/): 97.25 GiB / 988.05 GiB (22%) - ext4
-                                         Locale: en_US.UTF-8
-</div>
-</div>
+    <div class="fastfetch-window">
+        <div class="fastfetch">
+            -` daigou@daigou .o+` ------------- 
+            `ooo/ OS: Arch Linux x86_64 
+            `+oooo: Kernel: Linux 7.0.3-arch1-2 
+            `+oooooo: -+oooooo+: Packages: 16 (flatpak), 1254 (pacman) 
+            `/:-:++oooo+: Shell: bash 5.3.9 
+            `/++++/+++++++: Display (SAMSUNG): 2560x1440 @ 0.9x in 7", 144 Hz [External] 
+            `/++++++++++++++: DE: KDE Plasma 6.6.4 
+            `/+++ooooooooooooo/` WM: KWin (Wayland) 
+            ./ooosssso++osssssso+` WM Theme: Utterly-Round-Dark 
+            .oossssso-````/ossssss+` Theme: Breeze (Dark) [Qt], Breeze-Dark [GTK2], Breeze [GTK3] 
+            -osssssso. :ssssssso. Icons: breeze-dark [Qt], breeze-dark [GTK2/3/4] 
+            :osssssss/ osssso+++. Font: Noto Sans (10pt) [Qt], Noto Sans (10pt) [GTK2/3/4] 
+            /ossssssss/ +ssssooo/- Cursor: Flandre (24px) 
+            `/ossssso+/:- -:/+osssso+- Terminal: konsole 26.4.1 
+            `+sso+:-` `.-/+oso: CPU: Intel(R) Core(TM) i5-3470 (4) @ 3.60 GHz 
+            `++:. `-/+/ GPU: AMD Radeon RX 550 / 550 Series [Discrete] 
+            .` `/ Memory: 5.51 GiB / 15.56 GiB (35%) 
+            Disk (/): 97.25 GiB / 988.05 GiB (22%) - ext4 
+            Locale: en_US.UTF-8
+        </div>
+    </div>
 
-
-<script>
-document.getElementById("avatar").src = "https://imgur.com/Lkat3Kx.png";
-
-document.getElementById("btc").addEventListener("click", function(){
-    navigator.clipboard.writeText(this.textContent.trim());
-});
-</script>
-
+    <script>
+        document.getElementById("avatar").src = "https://imgur.com/Lkat3Kx.png";
+        document.getElementById("btc").addEventListener("click", function(){
+            navigator.clipboard.writeText(this.textContent.trim());
+        });
+    </script>
 </body>
 </html>
