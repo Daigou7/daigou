@@ -45,7 +45,7 @@ body::before{
     pointer-events:none;
 }
 
-/* CENTER CARD */
+/* CENTER */
 .container{
     position:absolute;
     left:50%;
@@ -53,30 +53,41 @@ body::before{
     transform:translate(-50%,-50%);
 }
 
+/* CARD */
 .card{
     background:transparent;
     border:none;
-    padding:28px 24px;
-    border-radius:14px;
     width:340px;
     text-align:center;
     box-shadow:none;
+    overflow:hidden;
+    border-radius:14px;
 }
 
+/* BANNER */
+.banner{
+    width:100%;
+    height:120px;
+    background:url("https://imgur.com/hj11RAb.png") center/cover no-repeat;
+}
+
+/* AVATAR */
+.avatar{
+    width:90px;
+    height:90px;
+    border-radius:12px;
+    object-fit:cover;
+    border:2px solid rgba(0,0,0,.85);
+    margin-top:-45px;
+    background:#000;
+}
+
+/* TEXTS */
 .toptext{
     font-size:10px;
     color:var(--muted);
-    margin-bottom:10px;
+    margin-top:10px;
     letter-spacing:2px;
-}
-
-.avatar{
-    width:110px;
-    height:110px;
-    border-radius:12px;
-    object-fit:cover;
-    border:1px solid rgba(255,255,255,.08);
-    margin-bottom:10px;
 }
 
 .name{
@@ -84,6 +95,7 @@ body::before{
     letter-spacing:3px;
     color:var(--text);
     font-weight:700;
+    margin-top:10px;
 }
 
 .bio{
@@ -123,21 +135,17 @@ body::before{
     border-color:rgba(255,255,255,.2);
 }
 
-/* FASTFETCH RIGHT (FLUTUANTE SEM CAIXA) */
+/* FASTFETCH */
 .fastfetch-window{
     position:absolute;
     right:6%;
     top:50%;
     transform:translateY(-50%);
-
     width:600px;
     max-width:45vw;
-
     background:transparent;
     border:none;
     box-shadow:none;
-
-    overflow:visible;
 }
 
 .fastfetch{
@@ -154,8 +162,11 @@ body::before{
 <div class="container">
     <div class="card">
 
-        <div class="toptext"></div>
+        <div class="banner"></div>
+
         <img id="avatar" class="avatar" src="">
+
+        <div class="toptext"></div>
 
         <div class="name">DAIGOU</div>
 
@@ -176,8 +187,7 @@ body::before{
     </div>
 </div>
 
-<div class="fastfetch-window">
-<div class="fastfetch">
+<div class="fastfetch-window"
                   -`                     daigou@daigou
                  .o+`                    -------------
                 `ooo/                    OS: Arch Linux x86_64
@@ -199,11 +209,12 @@ body::before{
 .`                                 `/    Memory: 5.51 GiB / 15.56 GiB (35%)
                                          Disk (/): 97.25 GiB / 988.05 GiB (22%) - ext4
                                          Locale: en_US.UTF-8
+                                         
 </div>
 </div>
 
 <script>
-document.getElementById("avatar").src = "https://imgur.com/Lkat3Kx.png";
+document.getElementById("avatar").src = "https://imgur.com/X5ynlKk.png";
 
 document.getElementById("btc").addEventListener("click", function(){
     navigator.clipboard.writeText(this.textContent.trim());
