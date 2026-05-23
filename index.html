@@ -67,6 +67,26 @@ position:relative;
 box-shadow:0 0 30px #ff00aa15;
 }
 
+body::after{
+content:'';
+
+position:fixed;
+
+right:20px;
+bottom:20px;
+
+width:220px;
+height:220px;
+
+background:url('https://i.imgur.com/1BWj7aN.gif') center/contain no-repeat;
+
+pointer-events:none;
+
+z-index:1;
+
+opacity:.95;
+}
+  
 .card::before{
 content:'';
 position:absolute;
