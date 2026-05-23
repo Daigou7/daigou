@@ -1,118 +1,253 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Daigou</title>
-    <link rel="icon" type="image/png" href="https://imgur.com/7H8pFGh.png">
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Fira-Code:wght@300;500&display=swap" rel="stylesheet">
-    <style>
-        :root{
-            --bg:#050505;
-            --text:#d6d6d6;
-            --muted:#9a9a9a;
-        }
-        *{ margin:0; padding:0; box-sizing:border-box; }
-        body,html{ height:100%; overflow:hidden; font-family:'Fira Code',monospace; color:var(--text); 
-            background: 
-                radial-gradient(circle at 20% 20%, rgba(255,255,255,.04), transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255,255,255,.03), transparent 50%),
-                linear-gradient(135deg, #0a0a0a, #000);
-        }
-        body::before{ 
-            content:''; position:fixed; inset:0; 
-            background:repeating-linear-gradient( to bottom, transparent, transparent 4px, rgba(255,255,255,.02) 5px ); 
-            pointer-events:none; 
-            z-index: -1;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DAIGOU</title>
 
-        .container{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); }
-        .card{ 
-            background:rgba(0,0,0,0.6); 
-            border:1px solid rgba(255,255,255,.08); 
-            padding:0; 
-            border-radius:14px; 
-            width:340px; 
-            text-align:center; 
-            overflow:hidden;
-            box-shadow: 0 0 40px rgba(0,0,0,0.8);
-        }
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap');
 
-        /* BANNER */
-        .banner {
-            position: relative;
-            width: 100%;
-            height: 160px;
-            background: url('https://imgur.com/hj11RAb.png') center/cover no-repeat;
-            border-radius: 14px 14px 0 0;
-        }
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
 
-        .avatar {
-            width: 118px;
-            height: 118px;
-            border-radius: 50%;
-            border: 5px solid var(--bg);
-            position: absolute;
-            bottom: -58px;
-            left: 50%;
-            transform: translateX(-50%);
-            object-fit: cover;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.7);
-            z-index: 2;
-        }
+    body{
+      background:#000;
+      color:white;
+      font-family:'Orbitron', sans-serif;
+      min-height:100vh;
+      overflow-x:hidden;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:40px 20px;
+      position:relative;
+    }
 
-        .name{ font-size:32px; letter-spacing:3px; color:var(--text); font-weight:700; margin-top: 55px; }
-        .bio{ font-size:12px; margin:12px 0 18px; color:var(--muted); line-height:1.4; }
-        .btc{ 
-            font-size:10px; 
-            padding:12px; 
-            margin:0 20px 16px; 
-            border:1px dashed rgba(255,255,255,.15); 
-            border-radius:8px; 
-            cursor:pointer; 
-            word-break:break-all; 
-            color:var(--text);
-            transition: .2s;
-        }
-        .btc:hover{ border-color: rgba(255,255,255,.4); background:rgba(255,255,255,.03); }
+    /* imagem fixa fundo */
+    .bg-image{
+      position:fixed;
+      right:0;
+      bottom:0;
+      width:650px;
+      opacity:0.22;
+      pointer-events:none;
+      z-index:0;
+      filter:drop-shadow(0 0 20px #ff00ff66);
+    }
 
-        .link{ 
-            display:flex; align-items:center; gap:10px; 
-            margin:0 20px 20px; 
-            padding:12px; 
-            background:rgba(0,0,0,.5); 
-            border-radius:8px; 
-            border:1px solid rgba(255,255,255,.08); 
-            text-decoration:none; 
-            color:var(--text); 
-            font-size:12px; 
-            transition:.2s;
-        }
-        .link:hover{ transform:translateX(6px); border-color:rgba(255,255,255,.3); }
-    </style>
+    /* card */
+    .card{
+      width:430px;
+      background:#050505;
+      border-radius:24px;
+      position:relative;
+      overflow:hidden;
+      z-index:2;
+      box-shadow:
+      0 0 25px rgba(255,0,255,0.15),
+      0 0 60px rgba(128,0,255,0.15);
+    }
+
+    /* borda led */
+    .card::before{
+      content:'';
+      position:absolute;
+      inset:-2px;
+      background:linear-gradient(
+      45deg,
+      #ff00c8,
+      #8a2eff,
+      #ff00c8,
+      #8a2eff
+      );
+      background-size:400%;
+      border-radius:24px;
+      z-index:-2;
+      animation:borderGlow 8s linear infinite;
+    }
+
+    .card::after{
+      content:'';
+      position:absolute;
+      inset:2px;
+      background:#050505;
+      border-radius:22px;
+      z-index:-1;
+    }
+
+    @keyframes borderGlow{
+      0%{
+        background-position:0 0;
+      }
+      100%{
+        background-position:400% 0;
+      }
+    }
+
+    /* banner */
+    .banner{
+      width:100%;
+      height:160px;
+      background:url('https://i.imgur.com/m09Loed.png') center/cover;
+      position:relative;
+    }
+
+    /* profile */
+    .profile-container{
+      width:100%;
+      display:flex;
+      justify-content:center;
+      margin-top:-55px;
+      position:relative;
+      z-index:5;
+    }
+
+    .profile{
+      width:110px;
+      height:110px;
+      border-radius:50%;
+      border:4px solid #000;
+      object-fit:cover;
+      box-shadow:
+      0 0 15px #ff00ff88,
+      0 0 35px #8000ff88;
+    }
+
+    .content{
+      padding:20px 30px 35px;
+      text-align:center;
+    }
+
+    h1{
+      margin-top:10px;
+      font-size:34px;
+      letter-spacing:4px;
+      color:#fff;
+      text-shadow:
+      0 0 8px #ff00ff,
+      0 0 18px #8000ff;
+    }
+
+    .bio{
+      margin-top:14px;
+      color:#cfcfcf;
+      line-height:1.8;
+      font-size:14px;
+      text-shadow:0 0 10px rgba(255,255,255,0.08);
+    }
+
+    .buttons{
+      margin-top:30px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+
+    .btn{
+      width:100%;
+      text-decoration:none;
+      color:white;
+      background:#0d0d0d;
+      border:1px solid rgba(255,255,255,0.06);
+      border-radius:14px;
+      padding:14px 18px;
+      display:flex;
+      align-items:center;
+      gap:14px;
+      transition:0.25s;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+      border-color:#ff00ff;
+      box-shadow:
+      0 0 15px rgba(255,0,255,0.35),
+      0 0 35px rgba(128,0,255,0.2);
+    }
+
+    .btn img{
+      width:26px;
+      height:26px;
+      object-fit:contain;
+    }
+
+    .btn span{
+      font-size:14px;
+      letter-spacing:1px;
+    }
+
+    @media(max-width:500px){
+
+      .card{
+        width:100%;
+      }
+
+      .bg-image{
+        width:420px;
+      }
+
+      h1{
+        font-size:28px;
+      }
+    }
+
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="card">
-            <div class="banner"></div>
-            <img id="avatar" class="avatar" src="">
-            <div class="name">DAIGOU</div>
-            <div class="bio"> Jᴇsᴜs Cʜʀɪsᴛ is Lord ♱<br> Buy Bitcoin ₿ </div>
-            <div id="btc" class="btc"> bc1qxy0uvk6n9fu7nv9a93ljax8q77vl649pmsh8ws </div>
-            <a class="link" href="https://steamcommunity.com/id/Daigou7/" target="_blank">
-                <img src="https://imgur.com/N92w6JN.png" width="18"> Steam
-            </a>
-        </div>
+
+  <!-- imagem fundo -->
+  <img class="bg-image" src="https://i.imgur.com/LF9bc6z.png">
+
+  <div class="card">
+
+    <!-- banner -->
+    <div class="banner"></div>
+
+    <!-- steam pfp -->
+    <div class="profile-container">
+      <img
+        class="profile"
+        src="https://steam-profile-api.vercel.app/api/avatar?id=Daigou7"
+      >
     </div>
 
-    <script>
-        // Avatar Steam
-        document.getElementById("avatar").src = "https://avatars.steamstatic.com/0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f_full.jpg";
-        
-        document.getElementById("btc").addEventListener("click", function(){
-            navigator.clipboard.writeText(this.textContent.trim());
-            this.style.borderColor = "#00ff00";
-            setTimeout(() => this.style.borderColor = "", 800);
-        });
-    </script>
+    <div class="content">
+
+      <h1>DAIGOU</h1>
+
+      <div class="bio">
+        Jᴇsᴜs Cʜʀɪsᴛ is Lord ♱<br>
+        Buy Bitcoin ₿
+      </div>
+
+      <div class="buttons">
+
+        <a class="btn" href="https://www.blockchain.com/explorer/addresses/btc/bc1qxy0uvk6n9fu7nv9a93ljax8q77vl649pmsh8ws" target="_blank">
+          <img src="https://i.imgur.com/dvR0GB6.png">
+          <span>Bitcoin</span>
+        </a>
+
+        <a class="btn" href="https://steamcommunity.com/id/Daigou7/" target="_blank">
+          <img src="https://i.imgur.com/N92w6JN.png">
+          <span>Steam</span>
+        </a>
+
+        <a class="btn" href="https://myanimelist.net/profile/daigou" target="_blank">
+          <img src="https://i.imgur.com/jWbk2Ey.png">
+          <span>MAL</span>
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
 </body>
 </html>
