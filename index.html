@@ -15,7 +15,7 @@
 
 :root{
     --bg:url('https://imgur.com/ZKHnd3X.png');
-    --pfp:url('https://imgur.com/eJ98XBA.png');
+    --pfp:url('https://imgur.com/1ptZA7W.png');
 }
 
 *{
@@ -40,7 +40,7 @@ body::before{
     position:fixed;
     inset:0;
     background:var(--bg) center center/cover no-repeat;
-    opacity:.16;
+    opacity:.65;
     pointer-events:none;
     z-index:-1;
 }
@@ -58,44 +58,44 @@ body::after{
     opacity:.95;
 }
 
-/* CARD */
+/* CARD INVISÍVEL */
 
 .card{
     width:430px;
 
-    background:transparent;
+    background:none;
+    border:none;
+    border-radius:0;
 
-    backdrop-filter:blur(12px);
-    -webkit-backdrop-filter:blur(12px);
-
-    border:2px solid #000;
-    border-radius:22px;
-
-    overflow:hidden;
+    overflow:visible;
     position:relative;
 
-    box-shadow:
-    0 0 25px rgba(0,0,0,.8),
-    0 0 50px rgba(0,0,0,.4);
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+
+    box-shadow:none;
 }
 
 .banner{
-    height:40px;
+    height:0;
 }
+
+/* FOTO */
 
 .pfp{
     width:110px;
     height:110px;
+
     border-radius:50%;
     border:2px solid #000;
 
     background:var(--pfp) center/cover;
 
-    margin:20px auto 0;
+    margin:0 auto;
 
     box-shadow:
-    0 0 20px rgba(255,0,170,.35),
-    0 0 0 2px #000;
+    0 0 0 2px #000,
+    0 0 20px rgba(0,0,0,.6);
 }
 
 .content{
@@ -113,24 +113,23 @@ h1{
     color:#fff;
 
     text-shadow:
-    -1px -1px 0 #000,
-     1px -1px 0 #000,
-    -1px  1px 0 #000,
-     1px  1px 0 #000,
-     0 0 12px rgba(0,0,0,.8);
+    2px 2px 0 #000,
+   -2px 2px 0 #000,
+    2px -2px 0 #000,
+   -2px -2px 0 #000;
 }
 
 .bio{
     margin-top:14px;
     font-size:14px;
     line-height:1.8;
-    color:#e6e6e6;
+    color:#fff;
 
     text-shadow:
-    -1px -1px 0 #000,
-     1px -1px 0 #000,
-    -1px  1px 0 #000,
-     1px  1px 0 #000;
+    1px 1px 0 #000,
+   -1px 1px 0 #000,
+    1px -1px 0 #000,
+   -1px -1px 0 #000;
 }
 
 /* LINKS */
@@ -153,10 +152,7 @@ h1{
 
     padding:13px;
 
-    background:rgba(0,0,0,.55);
-
-    backdrop-filter:blur(6px);
-    -webkit-backdrop-filter:blur(6px);
+    background:transparent;
 
     border:2px solid #000;
     border-radius:14px;
@@ -170,18 +166,17 @@ h1{
     transition:.2s;
 
     text-shadow:
-    -1px -1px 0 #000,
-     1px -1px 0 #000,
-    -1px  1px 0 #000,
-     1px  1px 0 #000;
+    1px 1px 0 #000,
+   -1px 1px 0 #000,
+    1px -1px 0 #000,
+   -1px -1px 0 #000;
 }
 
 .btn:hover{
     transform:translateY(-2px);
 
     box-shadow:
-    0 0 10px rgba(255,255,255,.08),
-    0 0 20px rgba(0,0,0,.8);
+    0 0 10px rgba(0,0,0,.8);
 }
 
 .btn img{
@@ -193,8 +188,6 @@ h1{
     drop-shadow(1px 1px 0 #000)
     drop-shadow(-1px -1px 0 #000);
 }
-
-/* RESPONSIVO */
 
 @media(max-width:500px){
 
