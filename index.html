@@ -5,203 +5,193 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- settings              -->
+
 <title>Daigou</title>
 
-<link rel="icon" type="image/png" href="https://imgur.com/sx5COrj.png">
+<link rel="icon" type="image/gif" href="https://files.catbox.moe/7poccf.gif">
 
 <style>
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 
 :root{
-    --bg:url('https://imgur.com/ZKHnd3X.png');
-    --pfp:url('https://imgur.com/NkAbsLy.png');
+
+--bg:url('https://imgur.com/JUPvHjj.png');
+--banner:url('https://w0.peakpx.com/wallpaper/119/9/HD-wallpaper-konata-uses-arch-linux-konata-linux-otaku-arch-anime-geek.jpg');
+--pfp:url('https://imgur.com/NkAbsLy.png');
+
+--pink:#ff00c8;
+--purple:#8a2eff;
+
 }
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Inter',sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
 }
 
 body{
-    background:#000;
-    min-height:100vh;
-    display:grid;
-    place-items:center;
-    padding:20px;
-    overflow-x:hidden;
-    color:#fff;
+background:#000;
+min-height:100vh;
+display:grid;
+place-items:center;
+padding:20px;
+overflow-x:hidden;
+color:#fff;
 }
 
 body::before{
-    content:'';
-    position:fixed;
-    inset:0;
-    background:var(--bg) center center/cover no-repeat;
-    opacity:.65;
-    pointer-events:none;
-    z-index:-1;
+content:'';
+
+position:fixed;
+inset:0;
+
+background:var(--bg) center center/cover no-repeat;
+
+opacity:.16;
+
+pointer-events:none;
+
+z-index:-1;
+}
+
+.card{
+width:430px;
+background:#050505;
+border-radius:22px;
+overflow:hidden;
+position:relative;
+box-shadow:0 0 30px #ff00aa15;
 }
 
 body::after{
-    content:'';
-    position:fixed;
-    right:20px;
-    bottom:20px;
-    width:220px;
-    height:120px;
-    background:url('https://i.imgur.com/1BWj7aN.gif') center/contain no-repeat;
-    pointer-events:none;
-    z-index:1;
-    opacity:.95;
+content:'';
+
+position:fixed;
+
+right:20px;
+bottom:20px;
+
+width:220px;
+height:220px;
+
+background:url('https://i.imgur.com/1BWj7aN.gif') center/contain no-repeat;
+
+pointer-events:none;
+
+z-index:1;
+
+opacity:.95;
+}
+  
+.card::before{
+content:'';
+position:absolute;
+inset:-2px;
+background:linear-gradient(45deg,var(--pink),var(--purple),var(--pink));
+background-size:300%;
+animation:border 8s linear infinite;
+z-index:-1;
 }
 
-/* CARD INVISÍVEL */
-
-.card{
-    width:430px;
-
-    background:transparent;
-    border:none;
-    border-radius:0;
-
-    overflow:visible;
-    position:relative;
-
-    backdrop-filter:none;
-    -webkit-backdrop-filter:none;
-
-    box-shadow:none;
+@keyframes border{
+to{
+background-position:300%;
+}
 }
 
 .banner{
-    height:0;
+height:160px;
+background:var(--banner) center/cover;
 }
 
-/* FOTO */
-
 .pfp{
-    width:110px;
-    height:110px;
-
-    border-radius:50%;
-    border:2px solid #000;
-
-    background:var(--pfp) center/cover;
-
-    margin:0 auto;
-
-    box-shadow:
-    0 0 0 2px #000,
-    0 0 20px rgba(0,0,0,.6);
+width:110px;
+height:110px;
+border-radius:50%;
+border:4px solid #000;
+background:var(--pfp) center/cover;
+margin:-55px auto 0;
+box-shadow:0 0 20px #ff00aa55;
 }
 
 .content{
-    padding:24px 30px 35px;
-    text-align:center;
+padding:24px 30px 35px;
+text-align:center;
 }
 
-/* TEXTO */
-
 h1{
-    font-size:30px;
-    font-weight:700;
-    letter-spacing:3px;
-    text-transform:uppercase;
-    color:#fff;
-
-    text-shadow:
-    2px 2px 0 #000,
-   -2px 2px 0 #000,
-    2px -2px 0 #000,
-   -2px -2px 0 #000;
+font-size:30px;
+font-weight:700;
+letter-spacing:3px;
+text-transform:uppercase;
 }
 
 .bio{
-    margin-top:14px;
-    font-size:14px;
-    line-height:1.8;
-    color:#fff;
-
-    text-shadow:
-    1px 1px 0 #000,
-   -1px 1px 0 #000,
-    1px -1px 0 #000,
-   -1px -1px 0 #000;
+margin-top:14px;
+font-size:14px;
+line-height:1.8;
+color:#bfbfbf;
 }
 
-/* LINKS */
-
 .links{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:10px;
-    margin-top:30px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+margin-top:30px;
 }
 
 .btn{
-    flex:1;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
-
-    padding:13px;
-
-    background:transparent;
-
-    border:2px solid #000;
-    border-radius:14px;
-
-    text-decoration:none;
-    color:#fff;
-
-    font-size:13px;
-    font-weight:600;
-
-    transition:.2s;
-
-    text-shadow:
-    1px 1px 0 #000,
-   -1px 1px 0 #000,
-    1px -1px 0 #000,
-   -1px -1px 0 #000;
+flex:1;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:10px;
+padding:13px;
+background:#0d0d0d;
+border:1px solid #ffffff10;
+border-radius:14px;
+text-decoration:none;
+color:#fff;
+font-size:13px;
+font-weight:500;
+transition:.2s;
 }
 
 .btn:hover{
-    transform:translateY(-2px);
-
-    box-shadow:
-    0 0 10px rgba(0,0,0,.8);
+transform:translateY(-2px);
+border-color:var(--pink);
+box-shadow:0 0 15px #ff00aa44;
 }
 
 .btn img{
-    width:22px;
-    height:22px;
-    object-fit:contain;
-
-    filter:
-    drop-shadow(1px 1px 0 #000)
-    drop-shadow(-1px -1px 0 #000);
+width:22px;
+height:22px;
+object-fit:contain;
 }
 
 @media(max-width:500px){
 
-    .card{
-        width:100%;
-    }
+.card{
+width:100%;
+}
 
-    .links{
-        flex-direction:column;
-    }
+.links{
+flex-direction:column;
+}
 
-    .btn{
-        width:100%;
-    }
+.btn{
+width:100%;
+}
+
+body::before{
+width:400px;
+height:400px;
+}
 
 }
 
@@ -211,41 +201,41 @@ h1{
 
 <div class="card">
 
-    <div class="banner"></div>
+<div class="banner"></div>
 
-    <div class="pfp"></div>
+<div class="pfp"></div>
 
-    <div class="content">
+<div class="content">
 
-        <h1>DAIGOU</h1>
+<!-- card bio                     -->
 
-        <div class="bio">
-            Jesus Christ is Lord ♱<br>
-            Buy Bitcoin ₿
-        </div>
+<h1>daigou</h1>
 
-        <div class="links">
+<div class="bio">
+Jesus Christ is Lord ♱<br>
+Buy Bitcoin ₿ 
+</div>
+<!-- links                     -->
 
-            <a class="btn" href="https://www.blockchain.com/explorer/addresses/btc/bc1qxy0uvk6n9fu7nv9a93ljax8q77vl649pmsh8ws" target="_blank">
-                <img src="https://i.imgur.com/dvR0GB6.png">
-                <span>Bitcoin</span>
-            </a>
+<div class="links">
 
-            <a class="btn" href="https://steamcommunity.com/id/Daigou7/" target="_blank">
-                <img src="https://i.imgur.com/N92w6JN.png">
-                <span>Steam</span>
-            </a>
+<a class="btn" href="https://www.blockchain.com/explorer/addresses/btc/bc1qxy0uvk6n9fu7nv9a93ljax8q77vl649pmsh8ws" target="_blank">
+<img src="https://i.imgur.com/dvR0GB6.png">
+<span>Bitcoin</span>
+</a>
 
-            <a class="btn" href="https://myanimelist.net/profile/daigou" target="_blank">
-                <img src="https://i.imgur.com/jWbk2Ey.png">
-                <span>MAL</span>
-            </a>
+<a class="btn" href="https://steamcommunity.com/id/Daigou7/" target="_blank">
+<img src="https://i.imgur.com/N92w6JN.png">
+<span>Steam</span>
+</a>
 
-        </div>
-
-    </div>
+<a class="btn" href="https://myanimelist.net/profile/daigou" target="_blank">
+<img src="https://i.imgur.com/jWbk2Ey.png">
+<span>MAL</span>
+</a>
 
 </div>
-
+</div>
+</div>
 </body>
 </html>
