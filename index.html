@@ -1,157 +1,102 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Daigou</title>
 
-<link rel="icon" type="image/png" href="https://i.imgur.com/sx5COrj.png">
+<link rel="icon" href="https://i.imgur.com/sx5COrj.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 
 <style>
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
-
 :root{
-
---bg:url('https://i.imgur.com/ZlY9VEs.png');
---banner:url('https://i.imgur.com/gmyRB35.png');
---pfp:url('https://i.imgur.com/NkAbsLy.png');
-
+--banner:url(https://i.imgur.com/gmyRB35.png);
+--pfp:url(https://i.imgur.com/NkAbsLy.png);
 --pink:#ff5fd2;
 --purple:#9d6bff;
 --cyan:#69e8ff;
-
 }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Inter',sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
 
 body{
-background:#000;
 min-height:100vh;
-
 display:flex;
 align-items:center;
 justify-content:flex-start;
-
 padding-left:8vw;
-
-overflow-x:hidden;
+background:#000;
 color:#fff;
-position:relative;
+overflow-x:hidden;
 }
 
-body::after{
-content:'';
-
+#bg{
 position:fixed;
-
-right:60px;
-bottom:25px;
-
-width:260px;
-height:260px;
-
-background:url('https://media.tenor.com/3iZPSvYxecMAAAAj/mita-chibi-mita.gif')
-center/contain no-repeat;
-
+inset:0;
+width:100%;
+height:100%;
+object-fit:cover;
+z-index:-2;
 pointer-events:none;
-
-opacity:.95;
-
-z-index:5;
 }
 
-.card{
-
-width:470px;
-
-background:
-linear-gradient(
-180deg,
-rgba(18,18,18,.98),
-rgba(6,6,6,.98)
-);
-
-border-radius:28px;
-
-overflow:hidden;
-position:relative;
-
-border:1px solid rgba(255,255,255,.05);
-
-backdrop-filter:blur(20px);
-
-box-shadow:
-0 0 50px rgba(0,0,0,.85),
-0 0 25px rgba(255,95,210,.08);
-
-}
-
-.card::before{
-
-content:'';
-
-position:absolute;
-inset:-2px;
-
-background:
-linear-gradient(
-135deg,
-var(--pink),
-var(--cyan),
-var(--purple),
-var(--pink)
-);
-
-background-size:400% 400%;
-
-filter:blur(12px);
-
-animation:led 10s linear infinite;
-
+body::before{
+content:"";
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.55);
 z-index:-1;
 }
 
-.card::after{
+body::after{
+content:"";
+position:fixed;
+right:60px;
+bottom:25px;
+width:260px;
+height:260px;
+background:url(https://media.tenor.com/3iZPSvYxecMAAAAj/mita-chibi-mita.gif) center/contain no-repeat;
+z-index:5;
+pointer-events:none;
+}
 
-content:'';
+.card{
+width:470px;
+border-radius:28px;
+overflow:hidden;
+position:relative;
+border:1px solid rgba(255,255,255,.05);
+background:linear-gradient(180deg,rgba(18,18,18,.98),rgba(6,6,6,.98));
+box-shadow:0 0 50px rgba(0,0,0,.85);
+backdrop-filter:blur(20px);
+}
 
+.card:before{
+content:"";
+position:absolute;
+inset:-2px;
+background:linear-gradient(135deg,var(--pink),var(--cyan),var(--purple),var(--pink));
+background-size:400% 400%;
+filter:blur(12px);
+animation:led 10s linear infinite;
+z-index:-1;
+}
+
+.card:after{
+content:"";
 position:absolute;
 inset:1px;
-
-background:
-linear-gradient(
-180deg,
-rgba(15,15,15,.98),
-rgba(5,5,5,.98)
-);
-
 border-radius:27px;
-
+background:linear-gradient(180deg,rgba(15,15,15,.98),rgba(5,5,5,.98));
 z-index:-1;
 }
 
 @keyframes led{
-
-0%{
-background-position:0% 50%;
-}
-
-50%{
-background-position:100% 50%;
-}
-
-100%{
-background-position:0% 50%;
-}
-
+0%{background-position:0 50%}
+50%{background-position:100% 50%}
+100%{background-position:0 50%}
 }
 
 .banner{
@@ -160,41 +105,21 @@ background:var(--banner) center/cover;
 position:relative;
 }
 
-.banner::after{
-
-content:'';
-
+.banner:after{
+content:"";
 position:absolute;
 inset:0;
-
-background:
-linear-gradient(
-to bottom,
-transparent,
-rgba(0,0,0,.8)
-);
-
+background:linear-gradient(to bottom,transparent,rgba(0,0,0,.8));
 }
 
 .pfp{
-
 width:120px;
 height:120px;
-
-border-radius:50%;
-
-background:var(--pfp) center/cover;
-
-border:2px solid rgba(255,255,255,.08);
-
 margin:-60px auto 0;
-
-position:relative;
-
-box-shadow:
-0 0 25px rgba(255,95,210,.3),
-0 0 50px rgba(105,232,255,.15);
-
+border-radius:50%;
+background:var(--pfp) center/cover;
+border:2px solid rgba(255,255,255,.08);
+box-shadow:0 0 25px rgba(255,95,210,.3);
 }
 
 .content{
@@ -203,146 +128,76 @@ text-align:center;
 }
 
 h1{
-
 font-size:32px;
-font-weight:700;
-
 letter-spacing:4px;
-text-transform:uppercase;
-
 margin-top:12px;
-
 }
 
 .bio{
-
 margin-top:16px;
-
 font-size:14px;
 line-height:2;
-
 color:#b8b8b8;
-
 }
 
 .links{
-
 display:grid;
 grid-template-columns:1fr 1fr;
-
 gap:12px;
-
 margin-top:30px;
-
 }
 
 .btn{
-
 display:flex;
 align-items:center;
 justify-content:center;
 gap:10px;
-
 padding:15px;
-
+border-radius:16px;
 text-decoration:none;
 color:#fff;
-
-background:
-linear-gradient(
-180deg,
-rgba(255,255,255,.05),
-rgba(255,255,255,.02)
-);
-
-border:1px solid rgba(255,255,255,.06);
-
-border-radius:16px;
-
 font-size:13px;
 font-weight:600;
-
-transition:.25s ease;
-
-backdrop-filter:blur(10px);
-
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.06);
+transition:.25s;
 }
 
 .btn:hover{
-
-transform:
-translateY(-4px)
-scale(1.02);
-
+transform:translateY(-4px);
 border-color:rgba(255,95,210,.35);
-
-box-shadow:
-0 0 18px rgba(255,95,210,.18),
-0 0 30px rgba(105,232,255,.12);
-
-background:
-linear-gradient(
-180deg,
-rgba(255,95,210,.08),
-rgba(105,232,255,.05)
-);
-
 }
 
 .btn img{
-
 width:22px;
 height:22px;
-
 object-fit:contain;
-
-filter:
-drop-shadow(0 0 5px rgba(255,255,255,.15));
-
 }
 
 @media(max-width:900px){
-
 body{
-
 justify-content:center;
-
-padding-left:20px;
-padding-right:20px;
-
+padding:20px;
 }
-
-body::after{
-display:none;
-}
-
+body::after{display:none}
 }
 
 @media(max-width:500px){
-
-.card{
-width:100%;
+.card{width:100%}
+.links{grid-template-columns:1fr}
 }
-
-.links{
-grid-template-columns:1fr;
-}
-
-}
-
 </style>
-
 </head>
+
 <body>
 
-<video autoplay muted loop playsinline id="bg-video">
-    <source src="https://i.imgur.com/n7vSArX.mp4" type="video/mp4">
+<video id="bg" autoplay muted loop playsinline>
+<source src="https://i.imgur.com/n7vSArX.mp4" type="video/mp4">
 </video>
-  
+
 <div class="card">
 
 <div class="banner"></div>
-
 <div class="pfp"></div>
 
 <div class="content">
@@ -356,47 +211,30 @@ Buy Bitcoin ₿
 
 <div class="links">
 
-<a class="btn"
-href="https://www.blockchain.com/explorer/addresses/btc/bc1qxy0uvk6n9fu7nv9a93ljax8q77vl649pmsh8ws"
-target="_blank">
-
-<img src="https://i.imgur.com/dvR0GB6.png" alt="">
+<a class="btn" href="https://www.blockchain.com/explorer/addresses/btc/bc1qxy0uvk6n9fu7nv9a93ljax8q77vl649pmsh8ws" target="_blank">
+<img src="https://i.imgur.com/dvR0GB6.png">
 <span>Bitcoin</span>
-
 </a>
 
-<a class="btn"
-href="https://steamcommunity.com/id/Daigou7/"
-target="_blank">
-
-<img src="https://i.imgur.com/N92w6JN.png" alt="">
+<a class="btn" href="https://steamcommunity.com/id/Daigou7/" target="_blank">
+<img src="https://i.imgur.com/N92w6JN.png">
 <span>Steam</span>
-
 </a>
 
-<a class="btn"
-href="https://myanimelist.net/profile/daigou"
-target="_blank">
-
-<img src="https://i.imgur.com/jWbk2Ey.png" alt="">
+<a class="btn" href="https://myanimelist.net/profile/daigou" target="_blank">
+<img src="https://i.imgur.com/jWbk2Ey.png">
 <span>MyAnimeList</span>
-
 </a>
 
-<a class="btn"
-href="https://www.youtube.com/channel/UCKIoTYVZy8u9D4nKORJ8NiA"
-target="_blank">
-
-<img src="https://static.vecteezy.com/system/resources/thumbnails/018/930/572/small/youtube-logo-youtube-icon-transparent-free-png" alt="">
+<a class="btn" href="https://www.youtube.com/channel/UCKIoTYVZy8u9D4nKORJ8NiA" target="_blank">
+<img src="https://i.imgur.com/IjfFP1r.png">
 <span>YouTube</span>
-
 </a>
 
 </div>
-
 </div>
-
 </div>
 
 </body>
 </html>
+```
