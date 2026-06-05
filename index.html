@@ -47,25 +47,6 @@ color:#fff;
 position:relative;
 }
 
-body::before{
-content:'';
-
-position:fixed;
-inset:0;
-
-background:
-linear-gradient(
-rgba(0,0,0,.78),
-rgba(0,0,0,.78)
-),
-var(--bg) center center/cover no-repeat;
-
-opacity:.55;
-
-pointer-events:none;
-z-index:-3;
-}
-
 body::after{
 content:'';
 
@@ -354,6 +335,10 @@ grid-template-columns:1fr;
 </head>
 <body>
 
+<video autoplay muted loop playsinline id="bg-video">
+    <source src="https://i.imgur.com/n7vSArX.mp4" type="video/mp4">
+</video>
+  
 <div class="card">
 
 <div class="banner"></div>
