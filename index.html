@@ -1,18 +1,15 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>daigou</title>
 
 <link rel="icon" href="https://i.imgur.com/72aJIQ7.png">
-
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 
 <style>
-
 *{
 margin:0;
 padding:0;
@@ -20,26 +17,31 @@ box-sizing:border-box;
 font-family:Inter,sans-serif;
 }
 
+html,body{
+width:100%;
+height:100%;
+}
+
 body{
-background:#000;
-color:#fff;
-height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
 overflow:hidden;
+background:#000;
+color:#fff;
 position:relative;
 }
 
 body::before{
 content:"";
 position:fixed;
-inset:0;
+inset:-50%;
 background:
 linear-gradient(rgba(255,170,230,.03) 1px,transparent 1px),
 linear-gradient(90deg,rgba(255,170,230,.03) 1px,transparent 1px);
-background-size:42px 42px;
-mask-image:radial-gradient(circle at center,black 35%,transparent 95%);
+background-size:40px 40px;
+animation:gridMove 24s linear infinite;
+mask-image:radial-gradient(circle at center,black 35%,transparent 90%);
 pointer-events:none;
 }
 
@@ -48,52 +50,69 @@ content:"";
 position:fixed;
 inset:0;
 background:
-radial-gradient(circle at 50% 50%,rgba(255,160,220,.05),transparent 45%),
-radial-gradient(circle at top left,rgba(255,160,220,.08),transparent 35%),
-radial-gradient(circle at bottom right,rgba(255,160,220,.08),transparent 35%);
+radial-gradient(circle at 15% 20%,rgba(255,160,220,.08),transparent 30%),
+radial-gradient(circle at 85% 80%,rgba(255,160,220,.08),transparent 35%),
+radial-gradient(circle at center,rgba(255,160,220,.03),transparent 45%);
+animation:ambientGlow 8s ease-in-out infinite alternate;
 pointer-events:none;
 }
 
 .container{
-width:420px;
-max-width:90%;
-text-align:center;
-padding:40px;
+position:relative;
+width:430px;
+max-width:92%;
+padding:42px;
+border-radius:24px;
 background:rgba(8,8,8,.92);
 border:1px solid rgba(255,170,230,.12);
-border-radius:24px;
-backdrop-filter:blur(14px);
+backdrop-filter:blur(18px);
 box-shadow:
-0 0 25px rgba(255,170,230,.05),
-0 0 80px rgba(0,0,0,.95);
-position:relative;
+0 0 30px rgba(255,170,230,.04),
+0 0 120px rgba(0,0,0,.95);
+text-align:center;
+overflow:hidden;
+animation:fadeUp .9s cubic-bezier(.22,1,.36,1);
 }
 
 .container::before{
 content:"";
 position:absolute;
-left:50%;
 top:0;
-transform:translateX(-50%);
-width:140px;
+left:-60%;
+width:50%;
 height:2px;
 background:#ff9adf;
-box-shadow:0 0 15px #ff9adf;
+box-shadow:
+0 0 10px #ff9adf,
+0 0 20px #ff9adf;
+animation:scanner 5s linear infinite;
+}
+
+.container::after{
+content:"";
+position:absolute;
+inset:0;
+border-radius:24px;
+box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
+pointer-events:none;
 }
 
 h1{
-font-size:36px;
+font-size:38px;
 font-weight:700;
-letter-spacing:6px;
+letter-spacing:7px;
 margin-bottom:18px;
-text-shadow:0 0 10px rgba(255,170,230,.25);
+animation:titleGlow 3s ease-in-out infinite alternate;
 }
 
 .bio{
-color:#9f9f9f;
-line-height:2;
-margin-bottom:30px;
 font-size:15px;
+line-height:2;
+color:#9f9f9f;
+margin-bottom:32px;
+opacity:0;
+animation:fadeUp .8s forwards;
+animation-delay:.2s;
 }
 
 .links{
@@ -103,6 +122,7 @@ gap:14px;
 }
 
 .btn{
+position:relative;
 display:flex;
 align-items:center;
 justify-content:center;
@@ -114,12 +134,44 @@ border-radius:14px;
 text-decoration:none;
 color:#fff;
 font-weight:600;
-transition:.25s;
+overflow:hidden;
+transition:
+transform .25s,
+background .25s,
+border-color .25s,
+box-shadow .25s;
+opacity:0;
+animation:fadeUp .7s forwards;
+}
+
+.btn:nth-child(1){animation-delay:.35s;}
+.btn:nth-child(2){animation-delay:.45s;}
+.btn:nth-child(3){animation-delay:.55s;}
+.btn:nth-child(4){animation-delay:.65s;}
+
+.btn::before{
+content:"";
+position:absolute;
+left:-120%;
+top:0;
+width:55%;
+height:100%;
+background:linear-gradient(
+90deg,
+transparent,
+rgba(255,255,255,.18),
+transparent
+);
+transition:left .65s;
+}
+
+.btn:hover::before{
+left:180%;
 }
 
 .btn:hover{
-transform:translateY(-2px);
-background:#161616;
+transform:translateY(-3px);
+background:#171717;
 border-color:#ff9adf;
 box-shadow:
 0 0 14px rgba(255,170,230,.18),
@@ -129,11 +181,65 @@ box-shadow:
 .btn img{
 width:22px;
 height:22px;
-filter:drop-shadow(0 0 4px rgba(255,170,230,.4));
+transition:transform .25s;
+filter:drop-shadow(0 0 5px rgba(255,170,230,.35));
 }
 
-</style>
+.btn:hover img{
+transform:scale(1.12) rotate(-8deg);
+}
 
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(28px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+@keyframes titleGlow{
+from{
+text-shadow:0 0 8px rgba(255,170,230,.18);
+}
+to{
+text-shadow:
+0 0 18px rgba(255,170,230,.35),
+0 0 40px rgba(255,170,230,.15);
+}
+}
+
+@keyframes ambientGlow{
+0%{
+transform:scale(1);
+opacity:.45;
+}
+100%{
+transform:scale(1.15);
+opacity:.95;
+}
+}
+
+@keyframes gridMove{
+from{
+background-position:0 0,0 0;
+}
+to{
+background-position:40px 40px,40px 40px;
+}
+}
+
+@keyframes scanner{
+0%{
+left:-60%;
+}
+100%{
+left:120%;
+}
+}
+</style>
 </head>
 
 <body>
@@ -150,22 +256,22 @@ Buy Bitcoin ₿
 <div class="links">
 
 <a class="btn" href="https://www.blockchain.com/explorer/addresses/btc/bc1qxy0uvk6n9fu7nv9a93ljax8q77vl649pmsh8ws" target="_blank">
-<img src="https://i.imgur.com/dvR0GB6.png" alt="">
+<img src="https://i.imgur.com/dvR0GB6.png">
 <span>Bitcoin</span>
 </a>
 
 <a class="btn" href="https://steamcommunity.com/id/Daigou7/" target="_blank">
-<img src="https://i.imgur.com/N92w6JN.png" alt="">
+<img src="https://i.imgur.com/N92w6JN.png">
 <span>Steam</span>
 </a>
 
 <a class="btn" href="https://myanimelist.net/profile/daigou" target="_blank">
-<img src="https://i.imgur.com/jWbk2Ey.png" alt="">
+<img src="https://i.imgur.com/jWbk2Ey.png">
 <span>MyAnimeList</span>
 </a>
 
 <a class="btn" href="https://www.youtube.com/channel/UCKIoTYVZy8u9D4nKORJ8NiA" target="_blank">
-<img src="https://i.imgur.com/IjfFP1r.png" alt="">
+<img src="https://i.imgur.com/IjfFP1r.png">
 <span>YouTube</span>
 </a>
 
