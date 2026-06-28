@@ -1,8 +1,10 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>daigou</title>
 
@@ -20,196 +22,96 @@ font-family:Inter,sans-serif;
 }
 
 body{
-min-height:100vh;
-display:flex;
-align-items:center;
-padding-left:8vw;
 background:#000;
 color:#fff;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
 overflow:hidden;
+position:relative;
 }
 
-video.bg{
+body::before{
+content:"";
 position:fixed;
 inset:0;
-width:100%;
-height:100%;
-object-fit:cover;
-z-index:-4;
-filter:brightness(.22) saturate(.8);
-}
-
-.overlay{
-position:fixed;
-inset:0;
-background:
-radial-gradient(circle at 25% 30%,rgba(255,170,230,.06),transparent 40%),
-radial-gradient(circle at 80% 70%,rgba(255,170,230,.04),transparent 45%),
-rgba(0,0,0,.72);
-z-index:-3;
-}
-
-.grid{
-position:fixed;
-inset:0;
-pointer-events:none;
 background:
 linear-gradient(rgba(255,170,230,.03) 1px,transparent 1px),
 linear-gradient(90deg,rgba(255,170,230,.03) 1px,transparent 1px);
-background-size:40px 40px;
-mask-image:linear-gradient(to bottom,transparent,black 18%,black 82%,transparent);
-z-index:-2;
-}
-
-.scanlines{
-position:fixed;
-inset:0;
-pointer-events:none;
-background:repeating-linear-gradient(
-to bottom,
-rgba(255,255,255,.01) 0px,
-rgba(255,255,255,.01) 1px,
-transparent 2px,
-transparent 4px
-);
-opacity:.25;
-z-index:-1;
-}
-
-.glow-left{
-position:fixed;
-width:700px;
-height:700px;
-left:-250px;
-top:-250px;
-border-radius:50%;
-background:radial-gradient(circle,#ff9adf22,transparent 70%);
-filter:blur(70px);
+background-size:42px 42px;
+mask-image:radial-gradient(circle at center,black 35%,transparent 95%);
 pointer-events:none;
 }
 
-.glow-right{
-position:fixed;
-width:700px;
-height:700px;
-right:-250px;
-bottom:-250px;
-border-radius:50%;
-background:radial-gradient(circle,#ff9adf18,transparent 70%);
-filter:blur(90px);
-pointer-events:none;
-}
-
-.chibi{
-position:fixed;
-right:60px;
-bottom:25px;
-width:260px;
-pointer-events:none;
-filter:drop-shadow(0 0 18px rgba(255,170,230,.25));
-}
-
-.card{
-position:relative;
-width:470px;
-border-radius:28px;
-overflow:hidden;
-background:rgba(8,8,8,.88);
-backdrop-filter:blur(18px);
-border:1px solid rgba(255,170,230,.12);
-box-shadow:
-0 0 18px rgba(255,170,230,.04),
-0 0 45px rgba(255,170,230,.08),
-0 30px 80px rgba(0,0,0,.9);
-}
-
-.card::before{
+body::after{
 content:"";
-position:absolute;
-left:0;
-top:0;
-width:100%;
-height:2px;
-background:linear-gradient(
-90deg,
-transparent,
-#ff9adf,
-transparent
-);
-}
-
-.card::after{
-content:"";
-position:absolute;
-inset:0;
-pointer-events:none;
-border-radius:28px;
-box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
-}
-
-.banner{
-height:190px;
-background:url("https://i.imgur.com/yMwBW9O.png") center/cover;
-position:relative;
-}
-
-.banner::after{
-content:"";
-position:absolute;
+position:fixed;
 inset:0;
 background:
-linear-gradient(to bottom,
-transparent,
-rgba(0,0,0,.35));
+radial-gradient(circle at 50% 50%,rgba(255,160,220,.05),transparent 45%),
+radial-gradient(circle at top left,rgba(255,160,220,.08),transparent 35%),
+radial-gradient(circle at bottom right,rgba(255,160,220,.08),transparent 35%);
+pointer-events:none;
 }
 
-.pfp{
-width:120px;
-height:120px;
-margin:-60px auto 0;
-border-radius:50%;
-background:url("https://i.imgur.com/OiMnEEg.png") center/cover;
-border:3px solid #111;
-box-shadow:
-0 0 16px rgba(255,170,230,.35),
-0 0 40px rgba(255,170,230,.08);
-}
-
-.content{
-padding:30px;
+.container{
+width:420px;
+max-width:90%;
 text-align:center;
+padding:40px;
+background:rgba(8,8,8,.92);
+border:1px solid rgba(255,170,230,.12);
+border-radius:24px;
+backdrop-filter:blur(14px);
+box-shadow:
+0 0 25px rgba(255,170,230,.05),
+0 0 80px rgba(0,0,0,.95);
+position:relative;
+}
+
+.container::before{
+content:"";
+position:absolute;
+left:50%;
+top:0;
+transform:translateX(-50%);
+width:140px;
+height:2px;
+background:#ff9adf;
+box-shadow:0 0 15px #ff9adf;
 }
 
 h1{
-font-size:32px;
-letter-spacing:5px;
+font-size:36px;
 font-weight:700;
-text-shadow:
-0 0 10px rgba(255,170,230,.3);
+letter-spacing:6px;
+margin-bottom:18px;
+text-shadow:0 0 10px rgba(255,170,230,.25);
 }
 
 .bio{
-margin:18px 0;
-color:#aaaaaa;
+color:#9f9f9f;
 line-height:2;
+margin-bottom:30px;
+font-size:15px;
 }
 
 .links{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:12px;
-margin-top:24px;
+display:flex;
+flex-direction:column;
+gap:14px;
 }
 
 .btn{
 display:flex;
 align-items:center;
 justify-content:center;
-gap:10px;
-padding:15px;
-border-radius:14px;
+gap:12px;
+padding:16px;
 background:#111;
 border:1px solid rgba(255,170,230,.08);
+border-radius:14px;
 text-decoration:none;
 color:#fff;
 font-weight:600;
@@ -217,44 +119,18 @@ transition:.25s;
 }
 
 .btn:hover{
-transform:translateY(-3px);
+transform:translateY(-2px);
 background:#161616;
 border-color:#ff9adf;
 box-shadow:
-0 0 12px rgba(255,170,230,.18),
-0 0 28px rgba(255,170,230,.08);
+0 0 14px rgba(255,170,230,.18),
+0 0 35px rgba(255,170,230,.08);
 }
 
 .btn img{
 width:22px;
 height:22px;
-object-fit:contain;
 filter:drop-shadow(0 0 4px rgba(255,170,230,.4));
-}
-
-@media(max-width:900px){
-
-body{
-justify-content:center;
-padding:20px;
-}
-
-.chibi{
-display:none;
-}
-
-}
-
-@media(max-width:500px){
-
-.card{
-width:100%;
-}
-
-.links{
-grid-template-columns:1fr;
-}
-
 }
 
 </style>
@@ -263,28 +139,7 @@ grid-template-columns:1fr;
 
 <body>
 
-<video class="bg" autoplay muted loop playsinline>
-<source src="https://i.imgur.com/n7vSArX.mp4" type="video/mp4">
-</video>
-
-<div class="overlay"></div>
-<div class="grid"></div>
-<div class="scanlines"></div>
-
-<div class="glow-left"></div>
-<div class="glow-right"></div>
-
-<img class="chibi"
-src="https://media.tenor.com/3iZPSvYxecMAAAAj/mita-chibi-mita.gif"
-alt="">
-
-<div class="card">
-
-<div class="banner"></div>
-
-<div class="pfp"></div>
-
-<div class="content">
+<div class="container">
 
 <h1>daigou</h1>
 
@@ -295,43 +150,25 @@ Buy Bitcoin ₿
 
 <div class="links">
 
-<a class="btn"
-href="https://www.blockchain.com/explorer/addresses/btc/bc1qxy0uvk6n9fu7nv9a93ljax8q77vl649pmsh8ws"
-target="_blank">
-
+<a class="btn" href="https://www.blockchain.com/explorer/addresses/btc/bc1qxy0uvk6n9fu7nv9a93ljax8q77vl649pmsh8ws" target="_blank">
 <img src="https://i.imgur.com/dvR0GB6.png" alt="">
 <span>Bitcoin</span>
-
 </a>
 
-<a class="btn"
-href="https://steamcommunity.com/id/Daigou7/"
-target="_blank">
-
+<a class="btn" href="https://steamcommunity.com/id/Daigou7/" target="_blank">
 <img src="https://i.imgur.com/N92w6JN.png" alt="">
 <span>Steam</span>
-
 </a>
 
-<a class="btn"
-href="https://myanimelist.net/profile/daigou"
-target="_blank">
-
+<a class="btn" href="https://myanimelist.net/profile/daigou" target="_blank">
 <img src="https://i.imgur.com/jWbk2Ey.png" alt="">
 <span>MyAnimeList</span>
-
 </a>
 
-<a class="btn"
-href="https://www.youtube.com/channel/UCKIoTYVZy8u9D4nKORJ8NiA"
-target="_blank">
-
+<a class="btn" href="https://www.youtube.com/channel/UCKIoTYVZy8u9D4nKORJ8NiA" target="_blank">
 <img src="https://i.imgur.com/IjfFP1r.png" alt="">
 <span>YouTube</span>
-
 </a>
-
-</div>
 
 </div>
 
@@ -339,3 +176,4 @@ target="_blank">
 
 </body>
 </html>
+```
