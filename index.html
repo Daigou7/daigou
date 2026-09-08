@@ -1,6 +1,122 @@
-```html
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>daigou</title><link rel="icon" href="https://imgur.com/MYiYXDX.png"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet"><style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}html,body{width:100%;height:100%}body{display:flex;justify-content:flex-end;align-items:center;padding-right:8%;overflow:hidden;background:#000 url("https://i.imgur.com/vxNsQHw.png") center/cover fixed;color:#fff}body:before{content:"";position:fixed;inset:0;background:linear-gradient(90deg,transparent 35%,rgba(255,130,190,.08),transparent 70%);pointer-events:none}body:after{content:"";position:fixed;inset:-50%;background:linear-gradient(rgba(255,160,210,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,160,210,.025) 1px,transparent 1px);background-size:40px 40px;mask-image:radial-gradient(circle,black 30%,transparent 85%);animation:grid 24s linear infinite;pointer-events:none}.container{position:relative;width:360px;padding:30px;border:1px solid rgba(255,170,220,.18);border-radius:18px;background:rgba(8,5,8,.68);backdrop-filter:blur(14px);box-shadow:0 15px 60px rgba(0,0,0,.7),0 0 30px rgba(255,120,190,.05);text-align:center;overflow:hidden;animation:up .8s cubic-bezier(.22,1,.36,1)}.container:before{content:"";position:absolute;top:0;left:-60%;width:45%;height:1px;background:#ff9adf;box-shadow:0 0 10px #ff9adf;animation:scan 5s linear infinite}.container:after{content:"";position:absolute;inset:0;border-radius:18px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.025);pointer-events:none}h1{font-size:34px;font-weight:600;letter-spacing:6px;margin-bottom:12px;text-shadow:0 0 12px rgba(255,150,210,.2);animation:glow 3s ease-in-out infinite alternate}.bio{font-size:13px;line-height:1.9;color:#aaa;margin-bottom:25px;opacity:0;animation:up .7s .2s forwards}.links{display:flex;flex-direction:column;gap:9px}.btn{position:relative;display:flex;align-items:center;justify-content:center;gap:11px;padding:13px;background:rgba(18,10,16,.7);border:1px solid rgba(255,170,220,.1);border-radius:10px;color:#fff;text-decoration:none;font-size:13px;font-weight:600;overflow:hidden;transition:.25s}.btn:before{content:"";position:absolute;left:-120%;top:0;width:55%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.13),transparent);transition:left .6s}.btn:hover:before{left:180%}.btn:hover{transform:translateY(-2px);background:rgba(35,15,28,.82);border-color:rgba(255,154,223,.6);box-shadow:0 0 12px rgba(255,154,223,.15),0 0 28px rgba(255,154,223,.05)}.btn img{width:20px;height:20px;transition:.25s;filter:drop-shadow(0 0 4px rgba(255,154,223,.3))}.btn:hover img{transform:scale(1.1) rotate(-7deg)}.btn{opacity:0;animation:up .6s forwards}.btn:nth-child(1){animation-delay:.3s}.btn:nth-child(2){animation-delay:.4s}.btn:nth-child(3){animation-delay:.5s}.btn:nth-child(4){animation-delay:.6s}@keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}@keyframes glow{from{text-shadow:0 0 7px rgba(255,150,210,.15)}to{text-shadow:0 0 18px rgba(255,150,210,.3)}}@keyframes grid{to{background-position:40px 40px,40px 40px}}@keyframes scan{to{left:120%}}
-@media(max-width:600px){body{padding:20px;justify-content:center}.container{width:min(360px,100%)}}
-</style></head><body><div class="container"><h1>daigou</h1><div class="bio">Ave Christus Rex ♱<br>Buy Bitcoin ₿</div><div class="links"><a class="btn" href="https://www.blockchain.com/explorer/addresses/btc/bc1qxy0uvk6n9fu7nv9a93ljax8q77vl649pmsh8ws" target="_blank" rel="noopener"><img src="https://i.imgur.com/dvR0GB6.png"><span>Bitcoin</span></a><a class="btn" href="https://steamcommunity.com/id/Daigou7/" target="_blank" rel="noopener"><img src="https://i.imgur.com/N92w6JN.png"><span>Steam</span></a><a class="btn" href="https://myanimelist.net/profile/daigou" target="_blank" rel="noopener"><img src="https://i.imgur.com/jWbk2Ey.png"><span>MyAnimeList</span></a><a class="btn" href="https://www.youtube.com/channel/UCKIoTYVZy8u9D4nKORJ8NiA" target="_blank" rel="noopener"><img src="https://i.imgur.com/IjfFP1r.png"><span>YouTube</span></a></div></div></body></html>
-```
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>daigou</title>
+<link rel="icon" href="https://imgur.com/MYiYXDX.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
+html,body{width:100%;height:100%}
+body{
+display:flex;align-items:center;justify-content:flex-end;
+padding-right:8%;
+overflow:hidden;color:#fff;
+background:
+linear-gradient(90deg,rgba(0,0,0,.12),rgba(28,8,25,.2)),
+url("https://i.imgur.com/vxNsQHw.png") center/cover fixed
+}
+body:before{
+content:"";position:fixed;inset:0;pointer-events:none;
+background:
+radial-gradient(circle at 85% 50%,rgba(255,112,190,.13),transparent 32%),
+radial-gradient(circle at 70% 20%,rgba(160,100,255,.08),transparent 28%)
+}
+.container{
+position:relative;width:340px;padding:34px 28px;
+border:1px solid rgba(255,170,225,.3);
+border-radius:22px;
+background:linear-gradient(135deg,rgba(55,12,45,.48),rgba(22,8,30,.58));
+backdrop-filter:blur(16px) saturate(1.25);
+-webkit-backdrop-filter:blur(16px) saturate(1.25);
+box-shadow:
+0 18px 70px rgba(0,0,0,.5),
+0 0 35px rgba(255,90,190,.08),
+inset 0 0 35px rgba(255,120,210,.035);
+text-align:center;
+overflow:hidden;
+animation:up .8s cubic-bezier(.22,1,.36,1)
+}
+.container:before{
+content:"";position:absolute;inset:0;border-radius:22px;
+border:1px solid rgba(214,145,255,.08);
+pointer-events:none
+}
+.container:after{
+content:"";position:absolute;top:0;left:-60%;width:45%;height:1px;
+background:#ff9adf;
+box-shadow:0 0 10px #ff9adf,0 0 24px #d65cff;
+animation:scan 5s linear infinite
+}
+h1{
+font-size:34px;font-weight:700;letter-spacing:6px;
+margin-bottom:12px;
+text-shadow:0 0 12px rgba(255,140,215,.25);
+animation:glow 3s ease-in-out infinite alternate
+}
+.bio{
+font-size:13px;line-height:1.9;
+color:rgba(255,225,244,.72);
+margin-bottom:26px;
+opacity:0;animation:up .7s .2s forwards
+}
+.links{
+display:flex;justify-content:center;gap:16px
+}
+.btn{
+position:relative;width:48px;height:48px;
+display:flex;align-items:center;justify-content:center;
+border:1px solid rgba(255,170,225,.18);
+border-radius:14px;
+background:linear-gradient(145deg,rgba(255,150,220,.11),rgba(130,55,170,.1));
+box-shadow:inset 0 0 14px rgba(255,130,215,.035);
+text-decoration:none;overflow:hidden;
+opacity:0;animation:up .6s forwards;
+transition:.25s
+}
+.btn:before{
+content:"";position:absolute;inset:-40%;
+background:linear-gradient(90deg,transparent,rgba(255,190,235,.2),transparent);
+transform:translateX(-100%) rotate(12deg);
+transition:.6s
+}
+.btn:hover:before{transform:translateX(100%) rotate(12deg)}
+.btn:hover{
+transform:translateY(-3px) scale(1.04);
+border-color:rgba(255,170,225,.65);
+background:linear-gradient(145deg,rgba(255,130,205,.2),rgba(145,70,190,.18));
+box-shadow:0 0 16px rgba(255,110,200,.16),0 0 30px rgba(170,80,220,.08)
+}
+.btn img{
+width:21px;height:21px;object-fit:contain;
+filter:drop-shadow(0 0 5px rgba(255,170,225,.4));
+transition:.25s
+}
+.btn:hover img{transform:scale(1.12)}
+.btn:nth-child(1){animation-delay:.3s}
+.btn:nth-child(2){animation-delay:.4s}
+.btn:nth-child(3){animation-delay:.5s}
+.btn:nth-child(4){animation-delay:.6s}
+@keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes glow{from{text-shadow:0 0 7px rgba(255,150,210,.15)}to{text-shadow:0 0 18px rgba(255,150,210,.32),0 0 35px rgba(180,80,230,.1)}}
+@keyframes scan{to{left:120%}}
+@media(max-width:600px){
+body{justify-content:center;padding:20px}
+.container{width:min(340px,100%)}
+}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>daigou</h1>
+<div class="bio">Ave Christus Rex ♱<br>Buy Bitcoin ₿</div>
+<div class="links">
+<a class="btn" href="https://www.blockchain.com/explorer/addresses/btc/bc1qxy0uvk6n9fu7nv9a93ljax8q77vl649pmsh8ws" target="_blank" rel="noopener"><img src="https://i.imgur.com/dvR0GB6.png" alt="Bitcoin"></a>
+<a class="btn" href="https://steamcommunity.com/id/Daigou7/" target="_blank" rel="noopener"><img src="https://i.imgur.com/N92w6JN.png" alt="Steam"></a>
+<a class="btn" href="https://myanimelist.net/profile/daigou" target="_blank" rel="noopener"><img src="https://i.imgur.com/jWbk2Ey.png" alt="MyAnimeList"></a>
+<a class="btn" href="https://www.youtube.com/channel/UCKIoTYVZy8u9D4nKORJ8NiA" target="_blank" rel="noopener"><img src="https://i.imgur.com/IjfFP1r.png" alt="YouTube"></a>
+</div>
+</div>
+</body>
+</html>
